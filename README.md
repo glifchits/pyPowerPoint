@@ -4,8 +4,7 @@ pyPowerPoint
 A Python utility to extract the raw text and metadata from a a PowerPoint .pptx slideshow.
 Still in very early stages, use at your own risk...
 
-Usage
------
+## Usage
 
 In the `src` directory, you can run:
 
@@ -13,8 +12,7 @@ In the `src` directory, you can run:
 
 as a script which will print the text of the .pptx directly onto the terminal.
 
-Requirements
-------------
+## Requirements
 
 pyPowerPoint requires BeautifulSoup.
 
