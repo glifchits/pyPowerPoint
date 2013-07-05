@@ -1,10 +1,16 @@
 '''
-Created on 2013-07-03
+slide
+=====
 
-@author: glifchits
+This contains a class which parses the XML data of a .pptx slide and returns a JSON-like dictionary
+structure containing the barebones text and metadata of that slide.
+
+The string encoding of this class returns a Markdown friendly formatting of the slide.
+
+@author: George Lifchits
+Created on 2013-07-03
 '''
 from bs4 import BeautifulSoup
-import pprint
 
 class Slide:
     '''
@@ -104,7 +110,7 @@ class Slide:
 
             s += str_part + '\n'
 
-        return s
+        return s.encode( 'ascii', 'ignore' )
 
     def _parse_slide( self ):
         '''
