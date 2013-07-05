@@ -6,3 +6,5 @@
 pyodconverter/
 
 temp/
+
+*.pyc
