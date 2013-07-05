@@ -11,9 +11,10 @@ class Slide:
     A slide. Given the .pptx XML for a specific PowerPoint slide, this class creates a nice nested
     dictionary representation of the bare minimum content.
 
-    self.slide will be parsed and the structure looks like this:
+    The slide will be parsed and the resulting (JSON-like) structure looks like this:
 
     [{ id: int
+       type: 'title', 'sldNum'
        paragraphs: [{ id: int
                       words: [{ id: int
                                 text: ""
@@ -21,83 +22,94 @@ class Slide:
                                 baseline: int }]
                     }]
     }]
-
-
-
     '''
+
+    SLIDE_TITLE = '## '
     INDENT = '  '
+    BULLET = '* '
 
     def __init__( self, xml_string ):
         self.xml = BeautifulSoup( xml_string )
         self.slide = self._parse_slide()
 
     def __str__( self ):
+        '''
+        Markdown representation of the slide's text
+        '''
         def wrap( string, tag ):
+            '''
+            Helper function to easily wrap a string with tags. Auto closes HTML tags
+            '''
             if tag.startswith( '<' ) and tag.endswith( '>' ):
                 open = tag
-                close = tag[:-1] + '/>'
+                close = '</' + tag[1:]
             else:
                 open, close = tag, tag
-
             return open + string + close
 
         def delimiters( string ):
-            pass
+            '''
+            Helper function to clean up characters that should be delimited in the Markdown syntax
+            '''
+            chars = '*`'
+            for char in chars:
+                i = string.find( char )
+                while i >= 0:
+                    string = string[:i] + '\\' + string[i:]
+                    i = string.find( char )
+
+            return string
 
         s = ""
         by_id = lambda x: x['id']
+
         for part in sorted( self.slide, key = by_id ):
-            para = ""
-            if 'type' in part and part['type'] == 'title':
-                para += "# "
+            str_part = ""
+
+            #### Part formatting
+            type = part.get( 'type', 0 )
+            if type == 'title':
+                str_part += self.SLIDE_TITLE
+            #### END
 
             for paragraph in sorted( part['paragraphs'], key = by_id ):
-                sentence = ""
-                if 'indent' in paragraph:
-                    sentence += self.INDENT * paragraph['indent'] + ' '
+                str_paragraph = ""
+
+                # ### Paragraph formatting
+                indent = paragraph.get( 'indent', 0 )
+                bullet = paragraph.get( 'bullet', 0 )
+
+                str_paragraph += self.INDENT * indent
+                if bullet:
+                    str_paragraph += self.BULLET
+                # ### END
 
                 for word in sorted( paragraph['words'], key = by_id ):
-                    this_word = word['text']
-                    if 'italic' in word:
-                        this_word = wrap( this_word, "<i>" )
-                    if 'baseline' in word:
-                        this_word = wrap( this_word, "<sup>" )
-                    delimiters( this_word )  # TODO: Markdown characters that need to be delimited
-                    sentence = sentence.strip() + this_word + ' '
-                para += sentence + '\n'
-            s += para + '\n'
+                    str_word = word['text']
+
+                    # ### Word formatting
+                    baseline = word.get( 'baseline', 0 )
+                    italic = word.get( 'italic', 0 )
+
+                    if italic == 1:
+                        str_word = wrap( str_word, "<i>" )
+
+                    if baseline == 30000:
+                        str_word = wrap( str_word, "<sup>" )
+                    # ### END
+
+                    str_paragraph += str_word + ' '
+
+                str_part += str_paragraph + '\n'
+
+            s += str_part + '\n'
+
         return s
-
-
-    def _get_attrs( self, parent, tag ):
-        attrs = []
-        a = parent.find( tag )
-        if a is None:
-            return []
-
-        if tag == 'p:ph':  # paragraph attributes
-            if 'type' in a.attrs:
-                x = ( 'type', a['type'] )
-                attrs.append( x )
-
-        elif tag == 'a:ppr':
-            if 'lvl' in a.attrs:
-                x = ( 'indent', int( a['lvl'] ) )
-                attrs.append( x )
-
-        elif tag == 'a:rpr':
-            if 'i' in a.attrs:
-                x = ( 'italic', int( a['i'] ) )
-                attrs.append( x )
-
-            if 'baseline' in a.attrs:
-                x = ( 'baseline', int( a['baseline'] ) )
-                attrs.append( x )
-
-        return attrs
 
     def _parse_slide( self ):
         '''
+        Parses the XML of a slide and produces the JSON-like structure of text content of the slide
+
         <p:sp>      a part, a logically contiguous piece. eg, title, content, slide number
             <p:ph>    attribute tag
 
@@ -111,11 +123,37 @@ class Slide:
             <a:rpr>   attribute tag
             <a:t>     text tag
         '''
+        def _get_attrs( parent, tag ):
+            a = parent.find( tag )
+            if a is None:
+                return []
+
+            attrs = []
+            if tag == 'p:ph':  # part attributes
+                if 'type' in a.attrs:
+                    attrs.append( ( 'type', a['type'] ) )
+
+            elif tag == 'a:ppr':  # paragraph attributes
+                if 'lvl' in a.attrs:
+                    attrs.append( ( 'indent', int( a['lvl'] ) ) )
+
+                if 'hangingpunct' in a.attrs:
+                    attrs.append( ( 'bullet', int( a['hangingpunct'] ) ) )
+
+            elif tag == 'a:rpr':  # sentence attributes
+                if 'i' in a.attrs:
+                    attrs.append( ( 'italic', int( a['i'] ) ) )
+
+                if 'baseline' in a.attrs:
+                    attrs.append( ( 'baseline', int( a['baseline'] ) ) )
+
+            return attrs
+
         parts = []
         for sp_id, sp in enumerate( self.xml.find_all( 'p:sp' ) ):
             part = {'id':sp_id, 'paragraphs':[]}
 
-            for key, value in self._get_attrs( sp, 'p:ph' ):
+            for key, value in _get_attrs( sp, 'p:ph' ):
                 part[key] = value
 
             txt = sp.find( 'p:txbody' )
@@ -125,14 +163,14 @@ class Slide:
 
                 par = {'id': p_id + 1, 'words':[]}
 
-                for key, value in self._get_attrs( p, "a:ppr" ):
+                for key, value in _get_attrs( p, "a:ppr" ):
                     par[key] = value
 
                 for r_id, r in enumerate( p.find_all( 'a:r' ) ):
                     word = {'id':r_id,
                             'text': r.find( 'a:t' ).text.strip()}  # this is the text portion!
 
-                    for key, value in self._get_attrs( r, "a:rpr" ):
+                    for key, value in _get_attrs( r, "a:rpr" ):
                         word[key] = value
 
                     par['words'].append( word )
@@ -144,6 +182,6 @@ class Slide:
         return parts
 
 if __name__ == "__main__":
-    with open( "sample.xml" ) as xml_file:
+    with open( "../test/test_files/sample.xml" ) as xml_file:
         s = Slide( xml_file.read() )
         print s
