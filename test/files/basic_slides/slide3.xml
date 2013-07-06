@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p:sld xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main">
+	<p:cSld>
+		<p:spTree>
+			<p:nvGrpSpPr>
+				<p:cNvPr id="1" name=""/>
+				<p:cNvGrpSpPr/>
+				<p:nvPr/>
+			</p:nvGrpSpPr>
+			<p:grpSpPr>
+				<a:xfrm>
+					<a:off x="0" y="0"/>
+					<a:ext cx="0" cy="0"/>
+					<a:chOff x="0" y="0"/>
+					<a:chExt cx="0" cy="0"/>
+				</a:xfrm>
+			</p:grpSpPr>
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="2" name="Title 1"/>
+					<p:cNvSpPr>
+						<a:spLocks noGrp="1"/>
+					</p:cNvSpPr>
+					<p:nvPr>
+						<p:ph type="title"/>
+					</p:nvPr>
+				</p:nvSpPr>
+				<p:spPr/>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t>Slide title 2</a:t>
+						</a:r>
+						<a:endParaRPr lang="en-US" dirty="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="3" name="Content Placeholder 2"/>
+					<p:cNvSpPr>
+						<a:spLocks noGrp="1"/>
+					</p:cNvSpPr>
+					<p:nvPr>
+						<p:ph idx="1"/>
+					</p:nvPr>
+				</p:nvSpPr>
+				<p:spPr/>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr marL="0" indent="0">
+							<a:buNone/>
+						</a:pPr>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t>Paragraph 1</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>Lorem</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>ipsum</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>dolosdgsdfgsdg</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>esg</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>asdgweikj</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>dsv</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>lsldv</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>osE</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>gvxln</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>dksj</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>owej</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>gxD</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>sDjvjk</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>sdjv</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>nJDNVKJXZnvkjSDnvkjNSDJv</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>sskjdvsdbv</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>djvndfz</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>kjds</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>jksd</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>kjsdvnzdxvj</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>sjd</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+					</a:p>
+					<a:p>
+						<a:pPr marL="0" indent="0">
+							<a:buNone/>
+						</a:pPr>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t>Paragraph 2</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>sdfg</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>dfhfkjg</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" err="1" smtClean="0"/>
+							<a:t>dfzkjbxdf</a:t>
+						</a:r>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t></a:t>
+						</a:r>
+					</a:p>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-US" dirty="0" smtClean="0"/>
+							<a:t>Bullet list</a:t>
+						</a:r>
+					</a:p>
+					<a:p>
+						<a:pPr marL="0" indent="0">
+							<a:buNone/>
+						</a:pPr>
+						<a:endParaRPr lang="en-US" dirty="0" smtClean="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</p:spTree>
+		<p:extLst>
+			<p:ext uri="{BB962C8B-B14F-4D97-AF65-F5344CB8AC3E}">
+				<p14:creationId xmlns:p14="http://schemas.microsoft.com/office/powerpoint/2010/main" val="417551076"/>
+			</p:ext>
+		</p:extLst>
+	</p:cSld>
+	<p:clrMapOvr>
+		<a:masterClrMapping/>
+	</p:clrMapOvr>
+</p:sld>
