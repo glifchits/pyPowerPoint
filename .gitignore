@@ -8,3 +8,7 @@ pyodconverter/
 temp/
 
 *.pyc
+
+test/.DS_Store
+
+src/test.py
