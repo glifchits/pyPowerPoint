@@ -20,7 +20,7 @@ class Slide:
     The slide will be parsed and the resulting (JSON-like) structure looks like this:
 
     [{ id: int
-       type: 'title', 'sldNum'
+       type: 'ctrTitle', 'subTitle', 'title', 'sldNum'
        paragraphs: [{ id: int
                       words: [{ id: int
                                 text: ""
@@ -89,11 +89,13 @@ class Slide:
 
                 # ### Paragraph formatting <p:ppr>
                 indent = paragraph.get( 'indent', 0 )
-                bullet = paragraph.get( 'bullet', 0 )
+                list = paragraph.get( 'list', 0 )
 
                 str_paragraph += self.INDENT * indent
-                if bullet:
+                if list == 'bullet':
                     str_paragraph += self.BULLET
+                elif list == 'arabicPeriod':
+                    str_paragraph += "1."
                 # ### END
 
                 for word in sorted( paragraph['words'], key = by_id ):
@@ -116,7 +118,7 @@ class Slide:
 
             s += str_part + '\n'
 
-        return s.encode( 'ascii', 'ignore' )
+        return s.strip().encode( 'ascii', 'ignore' )
 
     def _parse_slide( self ):
         '''
@@ -148,8 +150,12 @@ class Slide:
                 if 'lvl' in a.attrs:
                     attrs.append( ( 'indent', int( a['lvl'] ) ) )
 
-                if 'hangingpunct' in a.attrs:
-                    attrs.append( ( 'bullet', int( a['hangingpunct'] ) ) )
+                x = a.find( 'a:buautonum' )
+                if x is not None:
+                    if 'arabicPeriod' in x.attrs:
+                        attrs.append( ( 'list', 'numbered' ) )
+                elif a.find( 'a:bunone' ) is None:
+                    attrs.append( ( 'list', 'bullet' ) )
 
             elif tag == 'a:rpr':  # sentence attributes
                 if 'i' in a.attrs:
@@ -178,6 +184,9 @@ class Slide:
                     par[key] = value
 
                 for r_id, r in enumerate( p.find_all( 'a:r' ) ):
+                    if r.find( 'a:t' ) is None:
+                        continue
+
                     word = {'id':r_id,
                             'text': r.find( 'a:t' ).text.strip()}  # this is the text portion!
 
