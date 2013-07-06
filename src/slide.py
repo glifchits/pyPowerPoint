@@ -30,6 +30,8 @@ class Slide:
     }]
     '''
 
+    MAIN_TITLE = '# '
+    SUBTITLE = '## '
     SLIDE_TITLE = '## '
     INDENT = '  '
     BULLET = '* '
@@ -72,8 +74,12 @@ class Slide:
         for part in sorted( self.slide, key = by_id ):
             str_part = ""
 
-            #### Part formatting
+            #### Part formatting <p:ph>
             type = part.get( 'type', 0 )
+            if type == 'ctrTitle':
+                str_part += self.MAIN_TITLE
+            if type == 'subTitle':
+                str_part += self.SUBTITLE
             if type == 'title':
                 str_part += self.SLIDE_TITLE
             #### END
@@ -81,7 +87,7 @@ class Slide:
             for paragraph in sorted( part['paragraphs'], key = by_id ):
                 str_paragraph = ""
 
-                # ### Paragraph formatting
+                # ### Paragraph formatting <p:ppr>
                 indent = paragraph.get( 'indent', 0 )
                 bullet = paragraph.get( 'bullet', 0 )
 
@@ -93,7 +99,7 @@ class Slide:
                 for word in sorted( paragraph['words'], key = by_id ):
                     str_word = word['text']
 
-                    # ### Word formatting
+                    # ### Word formatting <a:rpr>
                     baseline = word.get( 'baseline', 0 )
                     italic = word.get( 'italic', 0 )
 
@@ -117,17 +123,16 @@ class Slide:
         Parses the XML of a slide and produces the JSON-like structure of text content of the slide
 
         <p:sp>      a part, a logically contiguous piece. eg, title, content, slide number
-            <p:ph>    attribute tag
-
-        <p:txbody>  the tag that contains the text of a part
+            <p:ph>     attribute tag
+            <p:txbody> the tag that contains the text of a part
 
         <a:p>       a paragraph (subdivided part). eg, each point in the bullet list
-            <a:ppr>   attribute tag
+            <a:ppr>    attribute tag
 
-        <a:r>       "sentences". from what I see, its just for different formatting styles used
-                    within a paragraph
-            <a:rpr>   attribute tag
-            <a:t>     text tag
+        <a:r>       words. from what I see, its just for different formatting styles used within a
+                    paragraph
+            <a:rpr>    attribute tag
+            <a:t>      text tag
         '''
         def _get_attrs( parent, tag ):
             a = parent.find( tag )
